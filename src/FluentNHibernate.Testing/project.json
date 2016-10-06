@@ -1,0 +1,21 @@
+﻿{
+  "dependencies": {
+    "dotnet-test-nunit": "3.4.0-beta-2",
+    "FakeItEasy": "1.15.0",
+    "FluentNHibernate": "2.0.3",
+    "Machine.Specifications": "0.5.15",
+    "NHibernate": "4.0.0.4000",
+    "NUnit": "2.5.7.10213",
+    "RhinoMocks": "3.6.1",
+    "System.Data.SQLite": "1.0.66.1"
+  },
+  "frameworks": {
+    "net46": {
+      "frameworkAssemblies": {
+        "System.Drawing": "4.0.0.0" 
+      }
+    }
+  },
+  "testRunner": "nunit",
+  "version": "2.0.3-*"
+}

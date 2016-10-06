@@ -1,0 +1,13 @@
+﻿{
+  "dependencies": {
+    "FluentNHibernate": "2.0.3",
+    "FluentNHibernate.Specs.ExternalFixtures": "2.0.3",
+    "Machine.Specifications": "0.5.15",
+    "NHibernate": "4.0.0.4000"
+  },
+  "frameworks": {
+    "net40": {
+    }
+  },
+  "version": "1.5.3-*"
+}

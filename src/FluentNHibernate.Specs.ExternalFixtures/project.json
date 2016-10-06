@@ -1,0 +1,11 @@
+﻿{
+  "dependencies": {
+    "FluentNHibernate": "2.0.3",
+    "NHibernate": "4.0.0.4000"
+  },
+  "frameworks": {
+    "net40": {
+    }
+  },
+  "version": "2.0.3-*"
+}

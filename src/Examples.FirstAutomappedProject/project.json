@@ -1,0 +1,20 @@
+﻿{
+  "version": "2.0.3-*",
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
+
+  "dependencies": {
+    "System.Data.SQLite": "1.0.66.1",
+    "NHibernate": "4.0.0.4000",
+    "FluentNHibernate": "2.0.3"
+  },
+
+  "frameworks": {
+    "net45": {
+      "frameworkAssemblies": {
+        "System.Data": "4.0.0.0"
+      }
+    }
+  }
+}
