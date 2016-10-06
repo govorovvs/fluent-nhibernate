@@ -1,15 +1,16 @@
-﻿{
+{
   "version": "2.0.3-*",
   "buildOptions": {
+      "copyToOutput": {
+      "include": [ "x64", "x86" ]
+    },
     "emitEntryPoint": true
   },
-
   "dependencies": {
-    "System.Data.SQLite": "1.0.66.1",
+    "FluentNHibernate": "2.0.3",
     "NHibernate": "4.0.0.4000",
-    "FluentNHibernate": "2.0.3"
+    "System.Data.SQLite": "1.0.103"
   },
-
   "frameworks": {
     "net45": {
       "frameworkAssemblies": {
