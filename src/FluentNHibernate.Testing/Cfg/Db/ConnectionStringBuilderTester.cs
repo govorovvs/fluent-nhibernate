@@ -22,14 +22,14 @@ namespace FluentNHibernate.Testing.Cfg.Db
             builder.ConnectionString.ShouldEqual("a string");
         }
 
-        [Test]
+        [Test, Ignore("not supported in netcore")]
         public void ConnectionStringSetFromAppSetting()
         {
             builder.FromAppSetting("connectionString");
             builder.ConnectionString.ShouldContain("a-connection-string");
         }
 
-        [Test]
+        [Test, Ignore("not supported in netcore")]
         public void ConnectionStringSetFromConnectionStrings()
         {
             builder.FromConnectionStringWithKey("main");

@@ -40,7 +40,7 @@ namespace FluentNHibernate.Testing.Cfg
                 .ToProperties().ShouldContain("connection.connection_string", "value");
         }
 
-        [Test]
+        [Test, Ignore("not supported in netcore")]
         public void ConnectionStringSetFromAppSetting()
         {
             MySQLConfiguration.Standard
@@ -49,7 +49,7 @@ namespace FluentNHibernate.Testing.Cfg
                 .ToProperties().ShouldContain("connection.connection_string", "a-connection-string");
         }
 
-        [Test]
+        [Test, Ignore("not supported in netcore")]
         public void ConnectionStringSetFromConnectionStrings()
         {
             MySQLConfiguration.Standard

@@ -46,7 +46,7 @@ namespace FluentNHibernate.Testing.Cfg
                 .ToProperties().ShouldContain("connection.connection_string", "value");
         }
 
-        [Test]
+        [Test, Ignore("not supported in netcore")]
         public void ConnectionStringSetFromAppSetting()
         {
             DB2Configuration.Standard
@@ -55,7 +55,7 @@ namespace FluentNHibernate.Testing.Cfg
                 .ToProperties().ShouldContain("connection.connection_string", "a-connection-string");
         }
 
-        [Test]
+        [Test, Ignore("not supported in netcore")]
         public void ConnectionStringSetFromConnectionStrings()
         {
             DB2Configuration.Standard

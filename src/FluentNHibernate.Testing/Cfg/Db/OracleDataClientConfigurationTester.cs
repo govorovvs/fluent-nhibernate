@@ -110,7 +110,7 @@ namespace FluentNHibernate.Testing.Cfg.Db
                 .ToProperties().ShouldContain("connection.connection_string", "value");
         }
 
-        [Test]
+        [Test, Ignore("not supported in netcore")]
         public void ConnectionString_set_fromAppSetting()
         {
             OracleDataClientConfiguration.Oracle9
@@ -119,7 +119,7 @@ namespace FluentNHibernate.Testing.Cfg.Db
                 .ToProperties().ShouldContain("connection.connection_string", "a-connection-string");
         }
 
-        [Test]
+        [Test, Ignore("not supported in netcore")]
         public void ConnectionString_set_fromConnectionStrings()
         {
             OracleDataClientConfiguration.Oracle9

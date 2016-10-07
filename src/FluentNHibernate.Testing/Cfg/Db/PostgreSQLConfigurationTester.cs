@@ -57,7 +57,7 @@ namespace FluentNHibernate.Testing.Cfg.Db
                 .ToProperties().ShouldContain("connection.connection_string", "value");
         }
 
-        [Test]
+        [Test, Ignore("not supported in netcore")]
         public void ConnectionStringSetFromAppSetting()
         {
             PostgreSQLConfiguration.PostgreSQL82
@@ -66,7 +66,7 @@ namespace FluentNHibernate.Testing.Cfg.Db
                 .ToProperties().ShouldContain("connection.connection_string", "a-connection-string");
         }
 
-        [Test]
+        [Test, Ignore("not supported in netcore")]
         public void ConnectionStringSetFromConnectionStrings()
         {
             PostgreSQLConfiguration.PostgreSQL82
