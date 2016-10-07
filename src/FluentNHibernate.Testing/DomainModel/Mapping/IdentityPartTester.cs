@@ -1,12 +1,6 @@
 using System;
-using System.Diagnostics;
-using System.Reflection;
-using System.Xml;
-using FluentNHibernate.Automapping.TestFixtures.SuperTypes;
 using FluentNHibernate.Conventions;
-using FluentNHibernate.Conventions.AcceptanceCriteria;
 using FluentNHibernate.Conventions.Instances;
-using FluentNHibernate.Conventions.Inspections;
 using FluentNHibernate.Mapping;
 using FluentNHibernate.Utils.Reflection;
 using NUnit.Framework;
@@ -336,108 +330,101 @@ namespace FluentNHibernate.Testing.DomainModel.Mapping
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void IdentityType_MustBeIntegral_ForSequenceIdentity()
         {
             Member property = ReflectionHelper.GetMember<IdentityTarget>(x => x.GuidId);
-            new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.SequenceIdentity();
+            Assert.Throws<InvalidOperationException>(
+                () => new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.SequenceIdentity());
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void IdentityType_MustBeIntegral_ForIncrement()
         {
             Member property = ReflectionHelper.GetMember<IdentityTarget>(x => x.GuidId);
-            new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.Increment();
+            Assert.Throws<InvalidOperationException>(
+                () => new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.Increment());
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void IdentityType_MustBeIntegral_ForIdentity()
         {
-
             Member property = ReflectionHelper.GetMember<IdentityTarget>(x => x.GuidId);
-            new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.Identity();
+            Assert.Throws<InvalidOperationException>(
+                () => new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.Identity());
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void IdentityType_MustBeIntegral_ForSequence()
         {
-
             Member property = ReflectionHelper.GetMember<IdentityTarget>(x => x.GuidId);
-            new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.Sequence("no");
+            Assert.Throws<InvalidOperationException>(
+                () => new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.Sequence("no"));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void IdentityType_MustBeIntegral_ForHiLo()
         {
-
             Member property = ReflectionHelper.GetMember<IdentityTarget>(x => x.GuidId);
-            new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.HiLo("no", "no", "no");
+            Assert.Throws<InvalidOperationException>(
+                () => new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.HiLo("no", "no", "no"));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
+       
         public void IdentityType_MustBeIntegral_ForSeqHiLo()
         {
-
             Member property = ReflectionHelper.GetMember<IdentityTarget>(x => x.GuidId);
-            new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.SeqHiLo("no", "no");
+            Assert.Throws<InvalidOperationException>(
+                () => new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.SeqHiLo("no", "no"));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void IdentityType_MustBeString_ForUuidHex()
         {
 
             Member property = ReflectionHelper.GetMember<IdentityTarget>(x => x.IntId);
-            new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.UuidHex("format");
+            Assert.Throws<InvalidOperationException>(
+                () => new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.UuidHex("format"));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void IdentityType_MustBeString_ForUuidString()
         {
-
             Member property = ReflectionHelper.GetMember<IdentityTarget>(x => x.IntId);
-            new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.UuidString();
+            Assert.Throws<InvalidOperationException>(
+                () => new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.UuidString());
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void IdentityType_MustBeGuid_ForGuid()
         {
-
             Member property = ReflectionHelper.GetMember<IdentityTarget>(x => x.IntId);
-            new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.Guid();
+            Assert.Throws<InvalidOperationException>(
+                () => new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.Guid());
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void IdentityType_MustBeGuid_ForGuidComb()
         {
-
             Member property = ReflectionHelper.GetMember<IdentityTarget>(x => x.IntId);
-            new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.GuidComb();
+            Assert.Throws<InvalidOperationException>(
+                () => new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.GuidComb());
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void IdentityType_MustBeGuid_ForGuidNative()
         {
-
             Member property = ReflectionHelper.GetMember<IdentityTarget>(x => x.IntId);
-            new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.GuidNative();
+            Assert.Throws<InvalidOperationException>(
+                () => new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.GuidNative());
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void IdentityType_MustBeIntegral_ForNative()
         {
             Member property = ReflectionHelper.GetMember<IdentityTarget>(x => x.GuidId);
-            new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.Native();
+            Assert.Throws<InvalidOperationException>(
+                () => new IdentityPart(typeof(IdentityTarget), property).GeneratedBy.Native());
         }
 
         [Test]

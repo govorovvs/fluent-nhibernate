@@ -17,19 +17,19 @@ namespace FluentNHibernate.Testing.AutoMapping.Apm
         #region inheritance
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "Could not find mapping for class 'SuperType'")]
         public void TestInheritanceMappingSkipsSuperTypes()
         {
             var autoMapper = AutoMap.AssemblyOf<ExampleClass>()
                 .Where(t => t.Namespace == "FluentNHibernate.AutoMap.TestFixtures.SuperTypes")
                 .IgnoreBase<SuperType>();
 
-            new AutoMappingTester<SuperType>(autoMapper);
+            Exception exception =
+                Assert.Throws<InvalidOperationException>(() => new AutoMappingTester<SuperType>(autoMapper));
+            Assert.AreEqual("Could not find mapping for class 'SuperType'", exception.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "Could not find mapping for class 'SuperType'")]
-        public void TestInheritanceSubclassMappingSkipsSuperTypes()
+         public void TestInheritanceSubclassMappingSkipsSuperTypes()
         {
             var autoMapper = AutoMap.AssemblyOf<ExampleClass>()
                 .Where(t => t.Namespace == "FluentNHibernate.AutoMap.TestFixtures.SuperTypes")
@@ -39,7 +39,9 @@ namespace FluentNHibernate.Testing.AutoMapping.Apm
                     c.IsDiscriminated = type => true;
                 });
 
-            new AutoMappingTester<SuperType>(autoMapper);
+            Exception exception =
+               Assert.Throws<InvalidOperationException>(() => new AutoMappingTester<SuperType>(autoMapper));
+            Assert.AreEqual("Could not find mapping for class 'SuperType'", exception.Message);
         }
 
         [Test]

@@ -225,13 +225,13 @@ namespace FluentNHibernate.Testing.MappingModel.Output
                 .Element("bag").Exists();
         }
 
-        [Test, Ignore]
+        [Test, Ignore("")]
         public void ShouldWriteArray()
         {
             Assert.Fail();
         }
 
-        [Test, Ignore]
+        [Test, Ignore("")]
         public void ShouldWritePrimitiveArray()
         {
             Assert.Fail();

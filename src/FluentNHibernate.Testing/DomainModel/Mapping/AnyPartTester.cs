@@ -95,25 +95,29 @@ namespace FluentNHibernate.Testing.DomainModel.Mapping
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void WriteThrowsIfEntityIdColumnIsNotSet()
         {
-            new MappingTester<MappedObject>()
-                .ForMapping(map => map.ReferencesAny(x => x.Parent)
-                                       .EntityTypeColumn("AnyType")
-                                       .IdentityType(x => x.Id)
-                                       .AddMetaValue<SecondMappedObject>("SMO"));
+            Assert.Throws<InvalidOperationException>(
+                () =>
+                    new MappingTester<MappedObject>()
+                        .ForMapping(map => map.ReferencesAny(x => x.Parent)
+                            .EntityTypeColumn("AnyType")
+                            .IdentityType(x => x.Id)
+                            .AddMetaValue<SecondMappedObject>("SMO"))
+                );
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void WriteThrowsIfEntityTypeColumnIsNotSet()
         {
-            new MappingTester<MappedObject>()
-                .ForMapping(map => map.ReferencesAny(x => x.Parent)
-                                       .EntityIdentifierColumn("AnyId")
-                                       .IdentityType(x => x.Id)
-                                       .AddMetaValue<SecondMappedObject>("SMO"));
+            Assert.Throws<InvalidOperationException>(
+                () =>
+                    new MappingTester<MappedObject>()
+                        .ForMapping(map => map.ReferencesAny(x => x.Parent)
+                            .EntityIdentifierColumn("AnyId")
+                            .IdentityType(x => x.Id)
+                            .AddMetaValue<SecondMappedObject>("SMO"))
+                );
 
         }
 

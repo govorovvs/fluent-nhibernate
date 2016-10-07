@@ -5,7 +5,7 @@
     "FluentNHibernate": "2.0.3",
     "Machine.Specifications": "0.5.15",
     "NHibernate": "4.0.0.4000",
-    "NUnit": "2.5.7.10213",
+    "NUnit": "3.5.0",
     "RhinoMocks": "3.6.1",
     "System.Data.SQLite": "1.0.103"
   },
