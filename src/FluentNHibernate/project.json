@@ -1,6 +1,11 @@
 ﻿{
-  "buildOptions": {
-    "xmlDoc": true
+  "configurations": {
+    "Release": {
+      "buildOptions": {
+        "keyFile": "../FluentKey.snk",
+        "xmlDoc": true
+      }
+    }
   },
   "dependencies": {
     "NHibernate": "4.0.0.4000"
