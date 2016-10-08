@@ -1,4 +1,5 @@
 ﻿{
+  "authors": [ "James Gregory and contributors" ],
   "configurations": {
     "Release": {
       "buildOptions": {
@@ -10,6 +11,7 @@
   "dependencies": {
     "NHibernate": "4.0.0.4000"
   },
+  "description": "Fluent, XML-less, compile safe, automated, convention-based mappings for NHibernate.",
   "frameworks": {
     "net40": {
       "frameworkAssemblies": {
@@ -20,5 +22,17 @@
       }
     }
   },
+  "packOptions": {
+    "licenseUrl": "http://github.com/jagregory/fluent-nhibernate/raw/master/LICENSE.txt",
+    "owners": [ "jagregory", "chester89" ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/jagregory/fluent-nhibernate.git"
+    },
+    "requireLicenseAcceptance": false,
+    "tags": [ "orm", "dal", "nhibernate", "conventions" ]
+  },
+  "projectUrl": "http://fluentnhibernate.org",
+  "title": "FluentNHibernate",
   "version": "2.0.3-*"
 }
