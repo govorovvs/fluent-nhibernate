@@ -2,7 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
+    <Authors>James Gregory and contributors</Authors>
+    <PackageLicenseUrl>http://github.com/jagregory/fluent-nhibernate/raw/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageProjectUrl>http://fluentnhibernate.org</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jagregory/fluent-nhibernate</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Company>http://fluentnhibernate.org</Company>
   </PropertyGroup>
+  
+  <Import Project="..\versions.props" />
 
   <ItemGroup>
     <PackageReference Include="NHibernate" Version="4.0.0.4000" />
