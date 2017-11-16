@@ -1,5 +1,4 @@
 using FluentNHibernate.Mapping;
-using FluentNHibernate.MappingModel;
 using FluentNHibernate.MappingModel.Identity;
 using NUnit.Framework;
 namespace FluentNHibernate.Testing.FluentInterfaceTests
@@ -36,7 +35,7 @@ namespace FluentNHibernate.Testing.FluentInterfaceTests
         public void ShouldSetLazy()
         {
             keyPart.Lazy();
-            mapping.Lazy.ShouldBeTrue();            
+            mapping.Lazy.ShouldBeTrue();
         }
 
         [Test]
@@ -54,13 +53,17 @@ namespace FluentNHibernate.Testing.FluentInterfaceTests
         }
 
         [Test]
+        public void ShouldSetClass()
+        {
+            keyPart.Class<KeyManyToOnePartTests>();
+            mapping.Class.GetUnderlyingSystemType().ShouldEqual(typeof(KeyManyToOnePartTests));
+        }
+
+        [Test]
         public void ShouldSetNotFound()
         {
             keyPart.NotFound.Ignore();
             mapping.NotFound.ShouldEqual("ignore");
         }
-
-
-
     }
 }
