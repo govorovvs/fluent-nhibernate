@@ -19,7 +19,7 @@ namespace FluentNHibernate.Data
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (GetType() != obj.GetType()) return false;
-            return obj.Id == Id;
+            return obj.Id == Id && Id != 0;
         }
 
         /// <summary>
