@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Threading;
+using System.Threading.Tasks;
 using NHibernate;
 using NHibernate.Cache;
 using NHibernate.Cache.Entry;
@@ -17,12 +19,100 @@ namespace FluentNHibernate.Testing.FluentInterfaceTests
 
     internal class CustomPersister : IEntityPersister
     {
+        private bool _isVersioned;
+
+        public Task<int[]> FindDirtyAsync(object[] currentState, object[] previousState, object entity, ISessionImplementor session,
+            CancellationToken cancellationToken)
+        {
+            return Task.FromResult(FindDirty(currentState, previousState, entity, session));
+        }
+
+        public Task<int[]> FindModifiedAsync(object[] old, object[] current, object entity, ISessionImplementor session,
+            CancellationToken cancellationToken)
+        {
+            return Task.FromResult(FindModified(old, current, entity, session));
+        }
+
+        public Task<object[]> GetNaturalIdentifierSnapshotAsync(object id, ISessionImplementor session, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(GetNaturalIdentifierSnapshot(id, session));
+        }
+
+        public Task<object> LoadAsync(object id, object optionalObject, LockMode lockMode, ISessionImplementor session,
+            CancellationToken cancellationToken)
+        {
+            return Task.FromResult(Load(id, optionalObject, lockMode, session));
+        }
+
+        public Task LockAsync(object id, object version, object obj, LockMode lockMode, ISessionImplementor session,
+            CancellationToken cancellationToken)
+        {
+           return Task.CompletedTask;
+        }
+
+        public Task InsertAsync(object id, object[] fields, object obj, ISessionImplementor session,
+            CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
+        }
+
+        public Task<object> InsertAsync(object[] fields, object obj, ISessionImplementor session, CancellationToken cancellationToken)
+        {
+            return Task.FromResult<object>(null);
+        }
+
+        public Task DeleteAsync(object id, object version, object obj, ISessionImplementor session,
+            CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
+        }
+
+        public Task UpdateAsync(object id, object[] fields, int[] dirtyFields, bool hasDirtyCollection, object[] oldFields,
+            object oldVersion, object obj, object rowId, ISessionImplementor session, CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
+        }
+
+        public Task<object[]> GetDatabaseSnapshotAsync(object id, ISessionImplementor session, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(GetDatabaseSnapshot(id, session));
+        }
+
+        public Task<object> GetCurrentVersionAsync(object id, ISessionImplementor session, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(GetCurrentVersion(id, session));
+        }
+
+        public Task<object> ForceVersionIncrementAsync(object id, object currentVersion, ISessionImplementor session,
+            CancellationToken cancellationToken)
+        {
+            return Task.FromResult(ForceVersionIncrement(id, currentVersion, session));
+        }
+
+        public Task<bool?> IsTransientAsync(object obj, ISessionImplementor session, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(IsTransient(obj, session));
+        }
+
+        public Task ProcessInsertGeneratedPropertiesAsync(object id, object entity, object[] state, ISessionImplementor session,
+            CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
+        }
+
+        public Task ProcessUpdateGeneratedPropertiesAsync(object id, object entity, object[] state, ISessionImplementor session,
+            CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
+        }
+
         public void PostInstantiate()
-        {}
+        {
+        }
 
         public bool IsSubclassEntityName(string entityName)
         {
-            return false;
+            return true;
         }
 
         public IType GetPropertyType(string propertyName)
@@ -32,17 +122,17 @@ namespace FluentNHibernate.Testing.FluentInterfaceTests
 
         public int[] FindDirty(object[] currentState, object[] previousState, object entity, ISessionImplementor session)
         {
-            return new int[] {};
+            return new int[0];
         }
 
         public int[] FindModified(object[] old, object[] current, object entity, ISessionImplementor session)
         {
-            return new int[] {};
+            return new int[0];
         }
 
         public object[] GetNaturalIdentifierSnapshot(object id, ISessionImplementor session)
         {
-            return new object[] {};
+            return new object[0];
         }
 
         public object Load(object id, object optionalObject, LockMode lockMode, ISessionImplementor session)
@@ -51,10 +141,12 @@ namespace FluentNHibernate.Testing.FluentInterfaceTests
         }
 
         public void Lock(object id, object version, object obj, LockMode lockMode, ISessionImplementor session)
-        {}
+        {
+        }
 
         public void Insert(object id, object[] fields, object obj, ISessionImplementor session)
-        {}
+        {
+        }
 
         public object Insert(object[] fields, object obj, ISessionImplementor session)
         {
@@ -62,14 +154,19 @@ namespace FluentNHibernate.Testing.FluentInterfaceTests
         }
 
         public void Delete(object id, object version, object obj, ISessionImplementor session)
-        {}
+        {
+            
+        }
 
-        public void Update(object id, object[] fields, int[] dirtyFields, bool hasDirtyCollection, object[] oldFields, object oldVersion, object obj, object rowId, ISessionImplementor session)
-        {}
+        public void Update(object id, object[] fields, int[] dirtyFields, bool hasDirtyCollection, object[] oldFields,
+            object oldVersion, object obj, object rowId, ISessionImplementor session)
+        {
+            
+        }
 
         public object[] GetDatabaseSnapshot(object id, ISessionImplementor session)
         {
-            return new object[] {};
+            return new object[0];
         }
 
         public object GetCurrentVersion(object id, ISessionImplementor session)
@@ -82,21 +179,13 @@ namespace FluentNHibernate.Testing.FluentInterfaceTests
             return null;
         }
 
-        public EntityMode? GuessEntityMode(object obj)
-        {
-            return null;
-        }
-
-        public bool IsInstrumented(EntityMode entityMode)
-        {
-            return false;
-        }
-
         public void AfterInitialize(object entity, bool lazyPropertiesAreUnfetched, ISessionImplementor session)
-        {}
+        {
+        }
 
         public void AfterReassociate(object entity, ISessionImplementor session)
-        {}
+        {
+        }
 
         public object CreateProxy(object id, ISessionImplementor session)
         {
@@ -110,292 +199,149 @@ namespace FluentNHibernate.Testing.FluentInterfaceTests
 
         public object[] GetPropertyValuesToInsert(object obj, IDictionary mergeMap, ISessionImplementor session)
         {
-            return new object[] {};
+            return new object[0];
         }
 
         public void ProcessInsertGeneratedProperties(object id, object entity, object[] state, ISessionImplementor session)
-        {}
+        {
+            
+        }
 
         public void ProcessUpdateGeneratedProperties(object id, object entity, object[] state, ISessionImplementor session)
-        {}
+        {
+        }
 
-        public Type GetMappedClass(EntityMode entityMode)
+        public void SetPropertyValues(object obj, object[] values)
+        {
+        }
+
+        public void SetPropertyValue(object obj, int i, object value)
+        {
+        }
+
+        public object[] GetPropertyValues(object obj)
+        {
+            return new object[0];
+        }
+
+        public object GetPropertyValue(object obj, int i)
         {
             return null;
         }
 
-        public bool ImplementsLifecycle(EntityMode entityMode)
-        {
-            return false;
-        }
-
-        public bool ImplementsValidatable(EntityMode entityMode)
-        {
-            return false;
-        }
-
-        public Type GetConcreteProxyClass(EntityMode entityMode)
+        public object GetPropertyValue(object obj, string name)
         {
             return null;
         }
 
-        public void SetPropertyValues(object obj, object[] values, EntityMode entityMode)
-        {}
-
-        public void SetPropertyValue(object obj, int i, object value, EntityMode entityMode)
-        {}
-
-        public object[] GetPropertyValues(object obj, EntityMode entityMode)
-        {
-            return new object[] {};
-        }
-
-        public object GetPropertyValue(object obj, int i, EntityMode entityMode)
+        public object GetIdentifier(object obj)
         {
             return null;
         }
 
-        public object GetPropertyValue(object obj, string name, EntityMode entityMode)
+        public void SetIdentifier(object obj, object id)
+        {
+        }
+
+        public object GetVersion(object obj)
         {
             return null;
         }
 
-        public object GetIdentifier(object obj, EntityMode entityMode)
+        public object Instantiate(object id)
         {
             return null;
         }
 
-        public void SetIdentifier(object obj, object id, EntityMode entityMode)
-        {}
-
-        public object GetVersion(object obj, EntityMode entityMode)
+        public bool IsInstance(object entity)
         {
-            return null;
+            return true;
         }
 
-        public object Instantiate(object id, EntityMode entityMode)
+        public bool HasUninitializedLazyProperties(object obj)
         {
-            return null;
+            return true;
         }
 
-        public bool IsInstance(object entity, EntityMode entityMode)
+        public void ResetIdentifier(object entity, object currentId, object currentVersion)
         {
-            return false;
         }
 
-        public bool HasUninitializedLazyProperties(object obj, EntityMode entityMode)
+        public IEntityPersister GetSubclassEntityPersister(object instance, ISessionFactoryImplementor factory)
         {
-            return false;
-        }
-
-        public void ResetIdentifier(object entity, object currentId, object currentVersion, EntityMode entityMode)
-        {}
-
-        public IEntityPersister GetSubclassEntityPersister(object instance, ISessionFactoryImplementor factory, EntityMode entityMode)
-        {
-            return null;
+            return this;
         }
 
         public bool? IsUnsavedVersion(object version)
         {
-            return null;
+            return true;
         }
 
-        public ISessionFactoryImplementor Factory
-        {
-            get { return null; }
-        }
-        public string RootEntityName
-        {
-            get { return null; }
-        }
-        public string EntityName
-        {
-            get { return null; }
-        }
-        public EntityMetamodel EntityMetamodel
-        {
-            get { return null; }
-        }
-        public string[] PropertySpaces
-        {
-            get { return new string[] {}; }
-        }
-        public string[] QuerySpaces
-        {
-            get { return new string[] {}; }
-        }
-        public bool IsMutable
-        {
-            get { return false; }
-        }
-        public bool IsInherited
-        {
-            get { return false; }
-        }
-        public bool IsIdentifierAssignedByInsert
-        {
-            get { return false; }
-        }
+        public ISessionFactoryImplementor Factory { get; }
+        public string RootEntityName { get; }
+        public string EntityName { get; }
+        public EntityMetamodel EntityMetamodel { get; }
+        public string[] PropertySpaces { get; }
+        public string[] QuerySpaces { get; }
+        public bool IsMutable { get; }
+        public bool IsInherited { get; }
+        public bool IsIdentifierAssignedByInsert { get; }
+
         bool IEntityPersister.IsVersioned
         {
-            get { return false; }
+            get { return _isVersioned; }
         }
-        public IVersionType VersionType
-        {
-            get { return null; }
-        }
-        public int VersionProperty
-        {
-            get { return 0; }
-        }
-        public int[] NaturalIdentifierProperties
-        {
-            get { return new int[] {}; }
-        }
-        public IIdentifierGenerator IdentifierGenerator
-        {
-            get { return null; }
-        }
-        public IType[] PropertyTypes
-        {
-            get { return new IType[] {}; }
-        }
-        public string[] PropertyNames
-        {
-            get { return new string[] {}; }
-        }
-        public bool[] PropertyInsertability
-        {
-            get { return new bool[] {}; }
-        }
-        public ValueInclusion[] PropertyInsertGenerationInclusions
-        {
-            get { return new ValueInclusion[] {}; }
-        }
-        public ValueInclusion[] PropertyUpdateGenerationInclusions
-        {
-            get { return new ValueInclusion[] {}; }
-        }
-        public bool[] PropertyCheckability
-        {
-            get { return new bool[] {}; }
-        }
-        public bool[] PropertyNullability
-        {
-            get { return new bool[] {}; }
-        }
-        public bool[] PropertyVersionability
-        {
-            get { return new bool[] {}; }
-        }
-        public bool[] PropertyLaziness
-        {
-            get { return new bool[] {}; }
-        }
-        public CascadeStyle[] PropertyCascadeStyles
-        {
-            get { return new CascadeStyle[] {}; }
-        }
-        public IType IdentifierType
-        {
-            get { return null; }
-        }
-        public string IdentifierPropertyName
-        {
-            get { return null; }
-        }
-        public bool IsCacheInvalidationRequired
-        {
-            get { return false; }
-        }
-        public bool IsLazyPropertiesCacheable
-        {
-            get { return false; }
-        }
-        public ICacheConcurrencyStrategy Cache
-        {
-            get { return null; }
-        }
-        public ICacheEntryStructure CacheEntryStructure
-        {
-            get { return null; }
-        }
-        public IClassMetadata ClassMetadata
-        {
-            get { return null; }
-        }
-        public bool IsBatchLoadable
-        {
-            get { return false; }
-        }
-        public bool IsSelectBeforeUpdateRequired
-        {
-            get { return false; }
-        }
-        public bool IsVersionPropertyGenerated
-        {
-            get { return false; }
-        }
-        public bool HasProxy
-        {
-            get { return false; }
-        }
-        public bool HasCollections
-        {
-            get { return false; }
-        }
-        public bool HasMutableProperties
-        {
-            get { return false; }
-        }
-        public bool HasSubselectLoadableCollections
-        {
-            get { return false; }
-        }
-        public bool HasCascades
-        {
-            get { return false; }
-        }
-        public bool HasIdentifierProperty
-        {
-            get { return false; }
-        }
-        public bool CanExtractIdOutOfEntity
-        {
-            get { return false; }
-        }
-        public bool HasNaturalIdentifier
-        {
-            get { return false; }
-        }
-        public bool HasLazyProperties
-        {
-            get { return false; }
-        }
-        public bool[] PropertyUpdateability
-        {
-            get { return new bool[] {}; }
-        }
-        public bool HasCache
-        {
-            get { return false; }
-        }
-        public bool HasInsertGeneratedProperties
-        {
-            get { return false; }
-        }
-        public bool HasUpdateGeneratedProperties
-        {
-            get { return false; }
-        }
+
+        public IVersionType VersionType { get; }
+        public int VersionProperty { get; }
+        public int[] NaturalIdentifierProperties { get; }
+        public IIdentifierGenerator IdentifierGenerator { get; }
+        public IType[] PropertyTypes { get; }
+        public string[] PropertyNames { get; }
+        public bool[] PropertyInsertability { get; }
+        public ValueInclusion[] PropertyInsertGenerationInclusions { get; }
+        public ValueInclusion[] PropertyUpdateGenerationInclusions { get; }
+        public bool[] PropertyCheckability { get; }
+        public bool[] PropertyNullability { get; }
+        public bool[] PropertyVersionability { get; }
+        public bool[] PropertyLaziness { get; }
+        public CascadeStyle[] PropertyCascadeStyles { get; }
+        public IType IdentifierType { get; }
+        public string IdentifierPropertyName { get; }
+        public bool IsCacheInvalidationRequired { get; }
+        public bool IsLazyPropertiesCacheable { get; }
+        public ICacheConcurrencyStrategy Cache { get; }
+        public ICacheEntryStructure CacheEntryStructure { get; }
+        public IClassMetadata ClassMetadata { get; }
+        public bool IsBatchLoadable { get; }
+        public bool IsSelectBeforeUpdateRequired { get; }
+        public bool IsVersionPropertyGenerated { get; }
+        public bool HasProxy { get; }
+        public bool HasCollections { get; }
+        public bool HasMutableProperties { get; }
+        public bool HasSubselectLoadableCollections { get; }
+        public bool HasCascades { get; }
+        public bool HasIdentifierProperty { get; }
+        public bool CanExtractIdOutOfEntity { get; }
+        public bool HasNaturalIdentifier { get; }
+        public bool HasLazyProperties { get; }
+        public bool[] PropertyUpdateability { get; }
+        public bool HasCache { get; }
+        public bool IsInstrumented { get; }
+        public bool HasInsertGeneratedProperties { get; }
+        public bool HasUpdateGeneratedProperties { get; }
+        public Type MappedClass { get; }
+        public bool ImplementsLifecycle { get; }
+        public bool ImplementsValidatable { get; }
+        public Type ConcreteProxyClass { get; }
+        public EntityMode EntityMode { get; }
+        public IEntityTuplizer EntityTuplizer { get; }
+
         bool IOptimisticCacheSource.IsVersioned
         {
-            get { return false; }
+            get { return _isVersioned; }
         }
-        public IComparer VersionComparator
-        {
-            get { return null; }
-        }
+
+        public IComparer VersionComparator { get; }
     }
 }

@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NHibernate" Version="4.0.0.4000" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\FluentNHibernate\FluentNHibernate.csproj" />
   </ItemGroup>
 
