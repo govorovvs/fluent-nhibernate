@@ -28,7 +28,34 @@ namespace FluentNHibernate.Specs.Automapping
 
         It should_exclude_the_join_mapped_property_from_the_main_automapping = () =>
             mapping.Properties.Select(x => x.Name).ShouldNotContain("One");
-        
+
+        static AutoPersistenceModel model;
+        static ClassMapping mapping;
+    }
+
+
+    public class when_using_an_automapping_override_to_specify_a_discriminators_and_join_on_subclass
+    {
+        private Establish context = () =>
+            model = AutoMap.Source(new StubTypeSource(typeof(Parent), typeof(Child)))
+                .Override<Parent>(map =>
+                    map.DiscriminateSubClassesOnColumn("type"))
+                .Override<Child>(map => map.Join("table", part => { }));
+
+        private Because of = () =>
+            mapping = model.BuildMappingFor<Parent>();
+
+
+
+        It should_not_create_the_join_mapping = () =>
+            mapping.Joins.ShouldBeEmpty();
+
+        It should_map_the_discriminator = () =>
+            mapping.Discriminator.ShouldNotBeNull();
+
+        It should_map_subclasses_as_joined_subclasses = () =>
+            mapping.Subclasses.ShouldEachConformTo(x => x.Joins.Any());
+
         static AutoPersistenceModel model;
         static ClassMapping mapping;
     }
@@ -51,7 +78,7 @@ namespace FluentNHibernate.Specs.Automapping
             mapping.Subclasses.Count().ShouldEqual(1);
             mapping.Subclasses.ShouldEachConformTo(x => x.SubclassType == SubclassType.Subclass);
         };
-        
+
         static AutoPersistenceModel model;
         static ClassMapping mapping;
     }
@@ -99,7 +126,7 @@ namespace FluentNHibernate.Specs.Automapping
             parentMapping.TableName.ShouldEqual("fancyTableName_Parent");
             bParentMapping.BatchSize.ShouldEqual(50);
         };
-            
+
 
         static AutoPersistenceModel model;
         static ClassMapping entityMapping;
@@ -107,7 +134,7 @@ namespace FluentNHibernate.Specs.Automapping
         static ClassMapping bParentMapping;
     }
 
-    public class MultipleOverrides: IAutoMappingOverride<Entity>, IAutoMappingOverride<Parent>, IAutoMappingOverride<B_Parent>
+    public class MultipleOverrides : IAutoMappingOverride<Entity>, IAutoMappingOverride<Parent>, IAutoMappingOverride<B_Parent>
     {
         public void Override(AutoMapping<Entity> mapping)
         {

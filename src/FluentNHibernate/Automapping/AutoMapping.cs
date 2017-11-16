@@ -17,7 +17,7 @@ namespace FluentNHibernate.Automapping
 
         public AutoMapping(IList<Member> mappedMembers)
             : this(mappedMembers, new AttributeStore(), new MappingProviderStore())
-        {}
+        { }
 
         AutoMapping(IList<Member> mappedMembers, AttributeStore attributes, MappingProviderStore providers)
             : base(attributes, providers)
@@ -61,11 +61,11 @@ namespace FluentNHibernate.Automapping
                 if (Cache.IsDirty)
                     classMapping.Set(x => x.Cache, Layer.Defaults, ((ICacheMappingProvider)Cache).GetCacheMapping());
 
-                foreach (var join in providers.Joins)
-                    classMapping.AddJoin(join.GetJoinMapping());
-
                 classMapping.Set(x => x.Tuplizer, Layer.Defaults, providers.TuplizerMapping);
             }
+
+            foreach (var join in providers.Joins)
+                mapping.AddOrReplaceJoin(join.GetJoinMapping());
 
             foreach (var property in providers.Properties)
                 mapping.AddOrReplaceProperty(property.GetPropertyMapping());
@@ -144,7 +144,7 @@ namespace FluentNHibernate.Automapping
 
         public IAutoClasslike JoinedSubClass(Type type, string keyColumn)
         {
-            var genericType = typeof (AutoJoinedSubClassPart<>).MakeGenericType(type);
+            var genericType = typeof(AutoJoinedSubClassPart<>).MakeGenericType(type);
             var joinedclass = (ISubclassMappingProvider)Activator.CreateInstance(genericType, keyColumn);
 
             // remove any mappings for the same type, then re-add
@@ -193,7 +193,7 @@ namespace FluentNHibernate.Automapping
 
         // hide the base one D:
         new void Join(string table, Action<JoinPart<T>> action)
-        {}
+        { }
 
         public void Join(string table, Action<AutoJoinPart<T>> action)
         {
