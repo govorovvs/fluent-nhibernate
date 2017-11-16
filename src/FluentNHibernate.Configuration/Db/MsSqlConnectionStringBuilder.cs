@@ -1,5 +1,3 @@
-using System.Data.SqlClient;
-
 namespace FluentNHibernate.Cfg.Db
 {
     public class MsSqlConnectionStringBuilder : ConnectionStringBuilder
@@ -52,7 +50,7 @@ namespace FluentNHibernate.Cfg.Db
             if (!string.IsNullOrEmpty(connectionString))
                 return connectionString;
 
-            var builder = new SqlConnectionStringBuilder(connectionString)
+            var builder = new System.Data.SqlClient.SqlConnectionStringBuilder(connectionString)
             {
                 DataSource = server,
                 InitialCatalog = database,
