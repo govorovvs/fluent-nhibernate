@@ -32,6 +32,19 @@ namespace FluentNHibernate.Testing.Cfg
         }
 
         [Test]
+        public void ConnectionString_with_port_is_added_to_the_configuration()
+        {
+            MySQLConfiguration.Standard
+                .ConnectionString(c => c
+                    .Server("db-srv")
+                    .Database("tables")
+                    .Username("toni tester")
+                    .Port(3306)
+                    .Password("secret"))
+                .ToProperties()["connection.connection_string"].ShouldEqual("Server=db-srv;Port=3306;Database=tables;User ID=toni tester;Password=secret");
+        }
+
+        [Test]
         public void ConnectionStringSetExplicitly()
         {
             MySQLConfiguration.Standard
