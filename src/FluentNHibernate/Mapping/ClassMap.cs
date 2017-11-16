@@ -41,7 +41,7 @@ namespace FluentNHibernate.Mapping
 
         public ClassMap()
             : this(new AttributeStore(), new MappingProviderStore())
-        {}
+        { }
 
         protected ClassMap(AttributeStore attributes, MappingProviderStore providers)
             : base(providers)
@@ -381,7 +381,7 @@ namespace FluentNHibernate.Mapping
         public ImportPart ImportType<TImport>()
         {
             var part = new ImportPart(typeof(TImport));
-            
+
             imports.Add(part);
 
             return part;
@@ -525,9 +525,9 @@ namespace FluentNHibernate.Mapping
 		/// Defines a SQL 'where' clause used when retrieving objects of this type.
 		/// </summary>
     	public void Where(string where)
-    	{
+        {
             attributes.Set("Where", Layer.UserSupplied, where);
-    	}
+        }
 
         /// <summary>
         /// Sets the SQL statement used in subselect fetching.
@@ -618,58 +618,31 @@ namespace FluentNHibernate.Mapping
             mapping.Set(x => x.Type, Layer.Defaults, typeof(T));
             mapping.Set(x => x.Name, Layer.Defaults, typeof(T).AssemblyQualifiedName);
 
-            foreach (var property in providers.Properties)
-                mapping.AddProperty(property.GetPropertyMapping());
-
-            foreach (var component in providers.Components)
-                mapping.AddComponent(component.GetComponentMapping());
-
-            if (providers.Version != null)
-                mapping.Set(x => x.Version, Layer.Defaults, providers.Version.GetVersionMapping());
-
-            foreach (var oneToOne in providers.OneToOnes)
-                mapping.AddOneToOne(oneToOne.GetOneToOneMapping());
-
-            foreach (var collection in providers.Collections)
-                mapping.AddCollection(collection.GetCollectionMapping());
-
-            foreach (var reference in providers.References)
-                mapping.AddReference(reference.GetManyToOneMapping());
-
-            foreach (var any in providers.Anys)
-                mapping.AddAny(any.GetAnyMapping());
-
-            foreach (var subclass in providers.Subclasses.Values)
-                mapping.AddSubclass(subclass.GetSubclassMapping());
-
-            foreach (var join in providers.Joins)
-                mapping.AddJoin(join.GetJoinMapping());
-
-            if (providers.Discriminator != null)
-                mapping.Set(x => x.Discriminator, Layer.Defaults, providers.Discriminator.GetDiscriminatorMapping());
+            foreach (var provider in providers.SequencedMappingProviders)
+            {
+                TypeSwitch.Do(provider,
+                    TypeSwitch.Case<IPropertyMappingProvider>(x => mapping.AddProperty(x.GetPropertyMapping())),
+                    TypeSwitch.Case<IComponentMappingProvider>(x => mapping.AddComponent(x.GetComponentMapping())),
+                    TypeSwitch.Case<IOneToOneMappingProvider>(x => mapping.AddOneToOne(x.GetOneToOneMapping())),
+                    TypeSwitch.Case<ISubclassMappingProvider>(x => mapping.AddSubclass(x.GetSubclassMapping())),
+                    TypeSwitch.Case<ICollectionMappingProvider>(x => mapping.AddCollection(x.GetCollectionMapping())),
+                    TypeSwitch.Case<IManyToOneMappingProvider>(x => mapping.AddReference(x.GetManyToOneMapping())),
+                    TypeSwitch.Case<IAnyMappingProvider>(x => mapping.AddAny(x.GetAnyMapping())),
+                    TypeSwitch.Case<IFilterMappingProvider>(x => mapping.AddFilter(x.GetFilterMapping())),
+                    TypeSwitch.Case<IStoredProcedureMappingProvider>(x => mapping.AddStoredProcedure(x.GetStoredProcedureMapping())),
+                    TypeSwitch.Case<IJoinMappingProvider>(x => mapping.AddJoin(x.GetJoinMapping())),
+                    TypeSwitch.Case<IIdentityMappingProvider>(x => mapping.Set(y => y.Id, Layer.Defaults, x.GetIdentityMapping())),
+                    TypeSwitch.Case<ICompositeIdMappingProvider>(x => mapping.Set(y => y.Id, Layer.Defaults, x.GetCompositeIdMapping())),
+                    TypeSwitch.Case<INaturalIdMappingProvider>(x => mapping.Set(y => y.NaturalId, Layer.Defaults, x.GetNaturalIdMapping())),
+                    TypeSwitch.Case<IVersionMappingProvider>(x => mapping.Set(y => y.Version, Layer.Defaults, x.GetVersionMapping())),
+                    TypeSwitch.Case<IDiscriminatorMappingProvider>(x => mapping.Set(y => y.Discriminator, Layer.Defaults, x.GetDiscriminatorMapping())),
+                    TypeSwitch.Case<TuplizerMapping>(x => mapping.Set(y => y.Tuplizer, Layer.Defaults, x))
+                );
+            }
 
             if (Cache.IsDirty)
-                mapping.Set(x  => x.Cache, Layer.Defaults, ((ICacheMappingProvider)Cache).GetCacheMapping());
-
-            if (providers.Id != null)
-                mapping.Set(x => x.Id, Layer.Defaults, providers.Id.GetIdentityMapping());
-
-            if (providers.CompositeId != null)
-                mapping.Set(x => x.Id, Layer.Defaults, providers.CompositeId.GetCompositeIdMapping());
-
-            if (providers.NaturalId != null)
-                mapping.Set(x => x.NaturalId, Layer.Defaults, providers.NaturalId.GetNaturalIdMapping());
-
+                mapping.Set(x => x.Cache, Layer.Defaults, ((ICacheMappingProvider)Cache).GetCacheMapping());
             mapping.Set(x => x.TableName, Layer.Defaults, GetDefaultTableName());
-
-            foreach (var filter in providers.Filters)
-                mapping.AddFilter(filter.GetFilterMapping());
-
-            foreach (var storedProcedure in providers.StoredProcedures)
-                mapping.AddStoredProcedure(storedProcedure.GetStoredProcedureMapping());
-
-            mapping.Set(x => x.Tuplizer, Layer.Defaults, providers.TuplizerMapping);
-
             return mapping;
         }
 
