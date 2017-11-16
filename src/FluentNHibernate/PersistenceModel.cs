@@ -89,6 +89,7 @@ namespace FluentNHibernate
 
         private static Assembly FindTheCallingAssembly()
         {
+#if NET461
             StackTrace trace = new StackTrace(Thread.CurrentThread, false);
 
             Assembly thisAssembly = Assembly.GetExecutingAssembly();
@@ -104,6 +105,9 @@ namespace FluentNHibernate
                 }
             }
             return callingAssembly;
+#else
+            return Assembly.GetExecutingAssembly();
+#endif
         }
 
         public void Add(IMappingProvider provider)
