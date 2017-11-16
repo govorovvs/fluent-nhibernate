@@ -310,7 +310,7 @@ namespace FluentNHibernate
             set { validationVisitor.Enabled = value; }
         }
 
-        internal void ImportProviders(PersistenceModel model)
+        public void ImportProviders(PersistenceModel model)
         {
             model.classProviders.Each(x =>
             {

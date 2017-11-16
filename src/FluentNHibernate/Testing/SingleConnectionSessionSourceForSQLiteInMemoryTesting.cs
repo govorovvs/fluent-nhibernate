@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using FluentNHibernate.Cfg;
 using NHibernate;
+using NHibernate.Cfg;
 
 namespace FluentNHibernate.Testing
 {
@@ -12,7 +13,7 @@ namespace FluentNHibernate.Testing
         {
         }
 
-        public SingleConnectionSessionSourceForSQLiteInMemoryTesting(FluentConfiguration config) : base(config)
+        public SingleConnectionSessionSourceForSQLiteInMemoryTesting(Configuration config) : base(config)
         {
         }
 

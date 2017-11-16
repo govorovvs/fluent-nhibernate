@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FluentNHibernate.Configuration\FluentNHibernate.Configuration.csproj" />
     <ProjectReference Include="..\FluentNHibernate\FluentNHibernate.csproj" />
   </ItemGroup>
 

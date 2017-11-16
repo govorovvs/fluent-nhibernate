@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using FluentNHibernate.Cfg;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
@@ -33,9 +32,9 @@ namespace FluentNHibernate
             Initialize(new Configuration().AddProperties(properties), model);
         }
 
-        public SessionSource(FluentConfiguration config)
+        public SessionSource(Configuration config)
         {
-            Configuration = config.Configuration;
+            Configuration = config;
 
             SessionFactory = config.BuildSessionFactory();
             dialect = Dialect.GetDialect(Configuration.Properties);

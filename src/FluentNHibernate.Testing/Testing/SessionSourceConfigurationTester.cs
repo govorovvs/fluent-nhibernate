@@ -61,7 +61,7 @@ namespace FluentNHibernate.Testing.Testing
                     .Add<RecordMap>()
                     .Add<RecordFilter>());
 
-            return new SingleConnectionSessionSourceForSQLiteInMemoryTesting(config);
+            return new SingleConnectionSessionSourceForSQLiteInMemoryTesting(config.BuildConfiguration());
         }
     }
 }
