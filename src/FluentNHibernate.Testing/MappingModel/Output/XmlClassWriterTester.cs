@@ -383,19 +383,19 @@ namespace FluentNHibernate.Testing.MappingModel.Output
                 .Element("bag").Exists();
         }
 
-        [Test, Ignore]
+        [Test, Ignore("")]
         public void ShouldWriteIdBag()
         {
             Assert.Fail();
         }
 
-        [Test, Ignore]
+        [Test, Ignore("")]
         public void ShouldWriteArray()
         {
             Assert.Fail();
         }
 
-        [Test, Ignore]
+        [Test, Ignore("")]
         public void ShouldWritePrimitiveArray()
         {
             Assert.Fail();
@@ -434,7 +434,7 @@ namespace FluentNHibernate.Testing.MappingModel.Output
                 .Element("joined-subclass").Exists();
         }
 
-        [Test, Ignore]
+        [Test, Ignore("")]
         public void ShouldWriteUnionSubclass()
         {
             Assert.Fail();

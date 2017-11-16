@@ -67,7 +67,7 @@ namespace FluentNHibernate.Testing.Testing.Values
             [Test]
             public void should_throw_exception()
             {
-                thrown_exception.ShouldBeOfType(typeof(ApplicationException));
+                thrown_exception.ShouldBeOfExactType(typeof(ApplicationException));
             }
 
             [Test]
@@ -95,7 +95,7 @@ namespace FluentNHibernate.Testing.Testing.Values
             [Test]
             public void should_throw_exception()
             {
-                thrown_exception.ShouldBeOfType(typeof(ApplicationException));
+                thrown_exception.ShouldBeOfExactType(typeof(ApplicationException));
             }
 
             [Test]

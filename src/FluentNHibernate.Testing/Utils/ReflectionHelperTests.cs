@@ -44,7 +44,7 @@ namespace FluentNHibernate.Testing.Utils
         {
             var member = ReflectionHelper.GetMember<PropertyTarget>(x => (string)x.ExtensionData["Name"]);
 
-            member.MemberInfo.ShouldBeOfType<DummyPropertyInfo>();
+            member.MemberInfo.ShouldBeOfExactType<DummyPropertyInfo>();
             member.Name.ShouldEqual("Name");
             member.PropertyType.ShouldEqual(typeof(string));
         }
@@ -54,7 +54,7 @@ namespace FluentNHibernate.Testing.Utils
         {
             var member = ReflectionHelper.GetMember<PropertyTarget, string>(x => (string)x.ExtensionData["Name"]);
 
-            member.MemberInfo.ShouldBeOfType<DummyPropertyInfo>();
+            member.MemberInfo.ShouldBeOfExactType<DummyPropertyInfo>();
             member.Name.ShouldEqual("Name");
             member.PropertyType.ShouldEqual(typeof(string));
         }
@@ -64,7 +64,7 @@ namespace FluentNHibernate.Testing.Utils
         {
             var member = ReflectionHelper.GetMember<PropertyTarget>(x => (int)x.ExtensionData["Name"]);
 
-            member.MemberInfo.ShouldBeOfType<DummyPropertyInfo>();
+            member.MemberInfo.ShouldBeOfExactType<DummyPropertyInfo>();
             member.Name.ShouldEqual("Name");
             member.PropertyType.ShouldEqual(typeof(int));
         }
@@ -74,7 +74,7 @@ namespace FluentNHibernate.Testing.Utils
         {
             var member = ReflectionHelper.GetMember<PropertyTarget, int>(x => (int)x.ExtensionData["Name"]);
 
-            member.MemberInfo.ShouldBeOfType<DummyPropertyInfo>();
+            member.MemberInfo.ShouldBeOfExactType<DummyPropertyInfo>();
             member.Name.ShouldEqual("Name");
             member.PropertyType.ShouldEqual(typeof(int));
         }

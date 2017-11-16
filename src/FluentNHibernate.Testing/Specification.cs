@@ -10,7 +10,7 @@ namespace FluentNHibernate.Testing
     {
         public Exception thrown_exception { get; private set; }
 
-        [TestFixtureSetUp]
+        [SetUp]
         public void Setup()
         {
             establish_context();

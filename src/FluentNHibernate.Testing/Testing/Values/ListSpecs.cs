@@ -204,7 +204,7 @@ namespace FluentNHibernate.Testing.Testing.Values
         [Test]
         public void should_fail()
         {
-            thrown_exception.ShouldBeOfType<ApplicationException>();
+            thrown_exception.ShouldBeOfExactType<ApplicationException>();
         }
 
         [Test]
@@ -238,7 +238,7 @@ namespace FluentNHibernate.Testing.Testing.Values
         [Test]
         public void should_fail()
         {
-            thrown_exception.ShouldBeOfType<ApplicationException>();
+            thrown_exception.ShouldBeOfExactType<ApplicationException>();
         }
 
         [Test]
@@ -302,7 +302,7 @@ namespace FluentNHibernate.Testing.Testing.Values
         [Test]
         public void should_fail()
         {
-            thrown_exception.ShouldBeOfType<ApplicationException>();
+            thrown_exception.ShouldBeOfExactType<ApplicationException>();
         }
 
         [Test]
@@ -330,7 +330,7 @@ namespace FluentNHibernate.Testing.Testing.Values
         [Test]
         public void should_fail()
         {
-            thrown_exception.ShouldBeOfType<ApplicationException>();
+            thrown_exception.ShouldBeOfExactType<ApplicationException>();
         }
 
         [Test]
@@ -358,7 +358,7 @@ namespace FluentNHibernate.Testing.Testing.Values
         [Test]
         public void should_fail()
         {
-            thrown_exception.ShouldBeOfType<ArgumentNullException>();
+            thrown_exception.ShouldBeOfExactType<ArgumentNullException>();
         }
 
         [Test]
@@ -386,7 +386,7 @@ namespace FluentNHibernate.Testing.Testing.Values
         [Test]
         public void should_fail()
         {
-            thrown_exception.ShouldBeOfType<ArgumentNullException>();
+            thrown_exception.ShouldBeOfExactType<ArgumentNullException>();
         }
 
         [Test]

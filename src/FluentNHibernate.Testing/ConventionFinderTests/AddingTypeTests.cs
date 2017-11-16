@@ -41,7 +41,7 @@ namespace FluentNHibernate.Testing.ConventionFinderTests
         {
             var ex = Catch.Exception(() => finder.Add<ConventionWithoutValidConstructor>());
 
-            ex.ShouldBeOfType<MissingConstructorException>();
+            ex.ShouldBeOfExactType<MissingConstructorException>();
             ex.ShouldNotBeNull();
         }
 
@@ -50,7 +50,7 @@ namespace FluentNHibernate.Testing.ConventionFinderTests
         {
             var ex = Catch.Exception(() => finder.Add<ConventionWithoutValidConstructor>());
 
-            ex.ShouldBeOfType<MissingConstructorException>();
+            ex.ShouldBeOfExactType<MissingConstructorException>();
             ex.ShouldNotBeNull();
         }
 

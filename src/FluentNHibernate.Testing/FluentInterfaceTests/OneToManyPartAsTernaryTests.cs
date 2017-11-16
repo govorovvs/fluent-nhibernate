@@ -14,7 +14,7 @@ namespace FluentNHibernate.Testing.FluentInterfaceTests
         {
             OneToMany(x => x.EntityMapOfChildren)
                 .Mapping(m => m.AsMap("irrelevant-value").AsTernaryAssociation())
-                .ModelShouldMatch(x => x.Index.ShouldBeOfType(typeof(IndexManyToManyMapping)));
+                .ModelShouldMatch(x => x.Index.ShouldBeOfExactType(typeof(IndexManyToManyMapping)));
         }
 
         [Test]
@@ -62,7 +62,7 @@ namespace FluentNHibernate.Testing.FluentInterfaceTests
                 .ModelShouldMatch(x =>
                 {
                     x.Collection.ShouldEqual(Collection.Map);
-                    x.Index.ShouldBeOfType(typeof(IndexManyToManyMapping));
+                    x.Index.ShouldBeOfExactType(typeof(IndexManyToManyMapping));
                 });
         }
 
@@ -76,7 +76,7 @@ namespace FluentNHibernate.Testing.FluentInterfaceTests
                 .ModelShouldMatch(x =>
                 {
                     x.Collection.ShouldEqual(Collection.Map);
-                    x.Index.ShouldBeOfType(typeof(IndexManyToManyMapping));
+                    x.Index.ShouldBeOfExactType(typeof(IndexManyToManyMapping));
                     x.Index.Columns.Single().Name.ShouldEqual(indexName);
                 });
         }

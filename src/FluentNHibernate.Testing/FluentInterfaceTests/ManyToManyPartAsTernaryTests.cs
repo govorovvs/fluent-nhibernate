@@ -99,7 +99,7 @@ namespace FluentNHibernate.Testing.FluentInterfaceTests
                 .ModelShouldMatch(x =>
                 {
                     x.Collection.ShouldEqual(Collection.Map);
-                    x.Index.ShouldBeOfType(typeof(IndexManyToManyMapping));
+                    x.Index.ShouldBeOfExactType(typeof(IndexManyToManyMapping));
                 });
         }
 
@@ -113,7 +113,7 @@ namespace FluentNHibernate.Testing.FluentInterfaceTests
                 .ModelShouldMatch(x =>
                 {
                     x.Collection.ShouldEqual(Collection.Map);
-                    x.Index.ShouldBeOfType(typeof(IndexManyToManyMapping));
+                    x.Index.ShouldBeOfExactType(typeof(IndexManyToManyMapping));
                     x.Index.Columns.Single().Name.ShouldEqual(indexName);
 
                     var relationship = (ManyToManyMapping)x.Relationship;

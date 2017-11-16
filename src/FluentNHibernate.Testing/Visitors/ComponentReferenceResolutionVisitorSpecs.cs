@@ -57,7 +57,7 @@ namespace FluentNHibernate.Testing.Visitors
         public void should_throw_a_missing_external_component_exception()
         {
             thrown_exception.ShouldNotBeNull();
-            thrown_exception.ShouldBeOfType<MissingExternalComponentException>();
+            thrown_exception.ShouldBeOfExactType<MissingExternalComponentException>();
         }
 
         [Test]
@@ -118,7 +118,7 @@ namespace FluentNHibernate.Testing.Visitors
         public void should_throw_an_ambiguous_component_reference_exception()
         {
             thrown_exception.ShouldNotBeNull();
-            thrown_exception.ShouldBeOfType<AmbiguousComponentReferenceException>();
+            thrown_exception.ShouldBeOfExactType<AmbiguousComponentReferenceException>();
         }
 
         [Test]

@@ -127,7 +127,7 @@ namespace FluentNHibernate.Specs.Utilities
         It should_throw_an_unknown_property_exception = () =>
         {
             ex.ShouldNotBeNull();
-            ex.ShouldBeOfType<UnknownPropertyException>();
+            ex.ShouldBeOfExactType<UnknownPropertyException>();
         };
 
         It should_throw_an_exception_with_the_correct_message = () =>

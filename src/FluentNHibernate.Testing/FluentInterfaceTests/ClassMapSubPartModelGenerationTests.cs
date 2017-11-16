@@ -61,7 +61,7 @@ namespace FluentNHibernate.Testing.FluentInterfaceTests
         {
             ClassMap<PropertyTarget>()
                 .Mapping(m => m.Id(x => x.Id))
-                .ModelShouldMatch(x => x.Id.ShouldBeOfType<IdMapping>());
+                .ModelShouldMatch(x => x.Id.ShouldBeOfExactType<IdMapping>());
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace FluentNHibernate.Testing.FluentInterfaceTests
             ClassMap<PropertyTarget>()
                 .Mapping(m => m.CompositeId()
                     .KeyProperty(x => x.Id))
-                .ModelShouldMatch(x => x.Id.ShouldBeOfType<CompositeIdMapping>());
+                .ModelShouldMatch(x => x.Id.ShouldBeOfExactType<CompositeIdMapping>());
         }
 
         [Test]

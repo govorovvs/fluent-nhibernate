@@ -39,7 +39,7 @@ namespace FluentNHibernate.Specs.PersistenceModel
         It should_throw_a_validation_exception = () =>
         {
             exception.ShouldNotBeNull();
-            exception.ShouldBeOfType<ValidationException>();
+            exception.ShouldBeOfExactType<ValidationException>();
         };
 
         It should_indicate_which_entity_is_missing_the_id = () =>
@@ -76,7 +76,7 @@ namespace FluentNHibernate.Specs.PersistenceModel
         It should_throw_a_validation_exception = () =>
         {
             exception.ShouldNotBeNull();
-            exception.ShouldBeOfType<ValidationException>();
+            exception.ShouldBeOfExactType<ValidationException>();
         };
 
         It should_indicate_which_entity_has_the_invalid_many_to_many = () =>

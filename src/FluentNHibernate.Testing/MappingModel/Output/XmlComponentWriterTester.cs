@@ -1,3 +1,4 @@
+using System;
 using FluentNHibernate.MappingModel;
 using FluentNHibernate.MappingModel.ClassBased;
 using FluentNHibernate.MappingModel.Collections;
@@ -200,13 +201,13 @@ namespace FluentNHibernate.Testing.MappingModel.Output
                 .Element("list").Exists();
         }
 
-        [Test, Ignore]
+        [Test, Ignore("")]
         public void ShouldWriteArrays()
         {
             Assert.Fail();
         }
 
-        [Test, Ignore]
+        [Test, Ignore("")]
         public void ShouldWritePrimitiveArrays()
         {
             Assert.Fail();

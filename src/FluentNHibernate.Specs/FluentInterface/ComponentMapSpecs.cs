@@ -26,7 +26,7 @@ namespace FluentNHibernate.Specs.FluentInterface
             mapping = (component as IExternalComponentMappingProvider).GetComponentMapping();
 
         It should_create_an_external_component_mapping = () =>
-            mapping.ShouldBeOfType<ExternalComponentMapping>();
+            mapping.ShouldBeOfExactType<ExternalComponentMapping>();
 
         It should_add_properties_to_the_properties_collection = () =>
             mapping.Properties.ShouldContain(x => x.Name == "a_property");
@@ -77,7 +77,7 @@ namespace FluentNHibernate.Specs.FluentInterface
                 .Components.First();
 
         It should_create_a_reference_component_mapping = () =>
-            mapping.ShouldBeOfType<ReferenceComponentMapping>();
+            mapping.ShouldBeOfExactType<ReferenceComponentMapping>();
 
         It should_store_the_property_in_the_reference_component_mapping = () =>
             (mapping as ReferenceComponentMapping).Member.Name.ShouldBeEqualIgnoringCase("Component");
@@ -161,7 +161,7 @@ namespace FluentNHibernate.Specs.FluentInterface
             ex = Catch.Exception(() => component_map.Component(x => x.Compo));
 
         It should_throw_a_not_supported_exception = () =>
-            ex.ShouldBeOfType<NotSupportedException>();
+            ex.ShouldBeOfExactType<NotSupportedException>();
 
         static ComponentMap<Component> component_map;
         static Exception ex;

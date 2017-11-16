@@ -13,7 +13,7 @@ namespace FluentNHibernate.Testing.Diagnostics
             var config = new DiagnosticsConfiguration(null)
                 .Enable();
 
-            config.Logger.ShouldBeOfType<DefaultDiagnosticLogger>();
+            config.Logger.ShouldBeOfExactType<DefaultDiagnosticLogger>();
         }
 
         [Test]
@@ -22,7 +22,7 @@ namespace FluentNHibernate.Testing.Diagnostics
             var config = new DiagnosticsConfiguration(null)
                 .Disable();
 
-            config.Logger.ShouldBeOfType<NullDiagnosticsLogger>();
+            config.Logger.ShouldBeOfExactType<NullDiagnosticsLogger>();
         }
 
         [Test]

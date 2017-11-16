@@ -58,7 +58,7 @@ namespace FluentNHibernate.Testing.Testing
         [Test]
         public void should_add_a_property_check()
         {
-            sut.AllProperties.First().ShouldBeOfType(typeof(Property<PropertyEntity, object>));
+            sut.AllProperties.First().ShouldBeOfExactType(typeof(Property<PropertyEntity, object>));
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace FluentNHibernate.Testing.Testing
         [Test]
         public void should_add_a_list_check()
         {
-            sut.AllProperties.First().ShouldBeOfType(typeof(List<ListEntity, string>));
+            sut.AllProperties.First().ShouldBeOfExactType(typeof(List<ListEntity, string>));
         }
 
         [Test]
@@ -120,7 +120,7 @@ namespace FluentNHibernate.Testing.Testing
         [Test]
         public void should_add_a_property_check()
         {
-            sut.AllProperties.First().ShouldBeOfType(typeof(Property<PropertyEntity, string>));
+            sut.AllProperties.First().ShouldBeOfExactType(typeof(Property<PropertyEntity, string>));
         }
 
         [Test]
@@ -171,7 +171,7 @@ namespace FluentNHibernate.Testing.Testing
         [Test]
         public void should_add_a_reference_property_check()
         {
-            sut.AllProperties.First().ShouldBeOfType(typeof(ReferenceProperty<ReferenceEntity, object>));
+            sut.AllProperties.First().ShouldBeOfExactType(typeof(ReferenceProperty<ReferenceEntity, object>));
         }
 
         [Test]
@@ -206,7 +206,7 @@ namespace FluentNHibernate.Testing.Testing
         [Test]
         public void should_add_a_reference_property_check()
         {
-            sut.AllProperties.First().ShouldBeOfType(typeof(ReferenceProperty<ReferenceEntity, OtherEntity>));
+            sut.AllProperties.First().ShouldBeOfExactType(typeof(ReferenceProperty<ReferenceEntity, OtherEntity>));
         }
 
         [Test]
@@ -262,7 +262,7 @@ namespace FluentNHibernate.Testing.Testing
         [Test]
         public void should_add_a_reference_bag_check()
         {
-            sut.AllProperties.FirstOrDefault().ShouldBeOfType(typeof(ReferenceBag<ReferenceEntity, OtherEntity>));
+            sut.AllProperties.FirstOrDefault().ShouldBeOfExactType(typeof(ReferenceBag<ReferenceEntity, OtherEntity>));
         }
 
         [Test]
@@ -289,7 +289,7 @@ namespace FluentNHibernate.Testing.Testing
         [Test]
         public void should_add_a_reference_list_check()
         {
-            sut.AllProperties.First().ShouldBeOfType(typeof(ReferenceList<ReferenceEntity, OtherEntity>));
+            sut.AllProperties.First().ShouldBeOfExactType(typeof(ReferenceList<ReferenceEntity, OtherEntity>));
         }
 
         [Test]
@@ -326,7 +326,7 @@ namespace FluentNHibernate.Testing.Testing
         [Test]
         public void should_add_a_reference_list_check()
         {
-            sut.AllProperties.First().ShouldBeOfType(typeof(ReferenceList<ReferenceEntity, OtherEntity>));
+            sut.AllProperties.First().ShouldBeOfExactType(typeof(ReferenceList<ReferenceEntity, OtherEntity>));
         }
 
         [Test]
@@ -361,7 +361,7 @@ namespace FluentNHibernate.Testing.Testing
         [Test]
         public void should_add_a_reference_list_check()
         {
-            sut.AllProperties.First().ShouldBeOfType(typeof(ReferenceList<ReferenceEntity, OtherEntity>));
+            sut.AllProperties.First().ShouldBeOfExactType(typeof(ReferenceList<ReferenceEntity, OtherEntity>));
         }
 
         [Test]
@@ -422,7 +422,7 @@ namespace FluentNHibernate.Testing.Testing
         [Test]
         public void should_add_a_reference_list_check()
         {
-            sut.AllProperties.First().ShouldBeOfType(typeof(ReferenceList<ReferenceEntity, OtherEntity>));
+            sut.AllProperties.First().ShouldBeOfExactType(typeof(ReferenceList<ReferenceEntity, OtherEntity>));
         }
 
         [Test]
@@ -476,7 +476,7 @@ namespace FluentNHibernate.Testing.Testing
         [Test]
         public void should_add_a_list_check()
         {
-            sut.AllProperties.First().ShouldBeOfType(typeof(List<ReferenceEntity, OtherEntity>));
+            sut.AllProperties.First().ShouldBeOfExactType(typeof(List<ReferenceEntity, OtherEntity>));
         }
 
         [Test]
@@ -511,7 +511,7 @@ namespace FluentNHibernate.Testing.Testing
         [Test]
         public void should_add_a_reference_property_check()
         {
-            sut.AllProperties.First().ShouldBeOfType(typeof(List<ReferenceEntity, OtherEntity>));
+            sut.AllProperties.First().ShouldBeOfExactType(typeof(List<ReferenceEntity, OtherEntity>));
         }
 
         [Test]
@@ -572,7 +572,7 @@ namespace FluentNHibernate.Testing.Testing
         [Test]
         public void should_add_a_reference_property_check()
         {
-            sut.AllProperties.First().ShouldBeOfType(typeof(List<ReferenceEntity, OtherEntity>));
+            sut.AllProperties.First().ShouldBeOfExactType(typeof(List<ReferenceEntity, OtherEntity>));
         }
 
         [Test]

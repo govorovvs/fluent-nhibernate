@@ -10,7 +10,7 @@ namespace FluentNHibernate.Testing.Cfg
         [Test]
         public void ConfigureReturnsFluentConfiguration()
         {
-            Fluently.Configure().ShouldBeOfType(typeof(FluentConfiguration));
+            Fluently.Configure().ShouldBeOfExactType(typeof(FluentConfiguration));
         }
 
         [Test]

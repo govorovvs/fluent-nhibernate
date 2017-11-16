@@ -23,7 +23,7 @@ namespace FluentNHibernate.Testing.Infrastructure
 
             container.Resolve<IExample>()
                 .ShouldNotBeNull()
-                .ShouldBeOfType<Example>();
+                .ShouldBeOfExactType<Example>();
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace FluentNHibernate.Testing.Infrastructure
 
             ex
                 .ShouldNotBeNull()
-                .ShouldBeOfType<ResolveException>();
+                .ShouldBeOfExactType<ResolveException>();
 
             ex.Message
                 .ShouldEqual("Unable to resolve dependency: '" + typeof(IExample).FullName + "'");

@@ -24,7 +24,7 @@ namespace FluentNHibernate.Testing.Cfg
                 .ExposeConfiguration(cfg =>
                 {
                     cfg.ShouldNotBeNull();
-                    cfg.ShouldBeOfType(typeof(Configuration));
+                    cfg.ShouldBeOfExactType(typeof(Configuration));
                 });
         }
 
@@ -83,7 +83,7 @@ namespace FluentNHibernate.Testing.Cfg
                 .Mappings(m =>
                 {
                     m.ShouldNotBeNull();
-                    m.ShouldBeOfType(typeof(MappingConfiguration));
+                    m.ShouldBeOfExactType(typeof(MappingConfiguration));
                 });
         }
 

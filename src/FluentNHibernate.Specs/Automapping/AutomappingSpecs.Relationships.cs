@@ -29,7 +29,7 @@ namespace FluentNHibernate.Specs.Automapping
 	        mapping.Collections.Single().Name.ShouldEqual("Children");
 
 	    It should_have_a_one_to_many_collection = () =>
-	        mapping.Collections.Single().Relationship.ShouldBeOfType<OneToManyMapping>();
+	        mapping.Collections.Single().Relationship.ShouldBeOfExactType<OneToManyMapping>();
 
         static AutoPersistenceModel mapper;
         static ClassMapping mapping;
@@ -74,7 +74,7 @@ namespace FluentNHibernate.Specs.Automapping
             mapping.Collections.Single().Name.ShouldEqual("Children");
 
         It should_have_a_one_to_many_collection = () =>
-            mapping.Collections.Single().Relationship.ShouldBeOfType<OneToManyMapping>();
+            mapping.Collections.Single().Relationship.ShouldBeOfExactType<OneToManyMapping>();
 
         It should_have_the_correct_collection_key_column = () =>
             mapping.Collections.Single().Key.Columns.Single().Name.ShouldEqual("Parent_id");

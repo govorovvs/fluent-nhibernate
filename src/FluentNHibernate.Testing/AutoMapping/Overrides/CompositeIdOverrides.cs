@@ -58,7 +58,7 @@ namespace FluentNHibernate.Testing.AutoMapping.Overrides
 
 				//this part is dumb because i'm asserting a specific implementation. i don't have any other way
 				//of getting to the key type though
-				firstKey.ShouldBeOfType(typeof(KeyPropertyMapping));
+				firstKey.ShouldBeOfExactType(typeof(KeyPropertyMapping));
 				var keyProp = (KeyPropertyMapping)firstKey;
 				keyProp.Type.GetUnderlyingSystemType().ShouldEqual(typeof(GenericEnumMapper<>).MakeGenericType(typeof(SomeEnum)));
 			});
@@ -77,7 +77,7 @@ namespace FluentNHibernate.Testing.AutoMapping.Overrides
 			VerifyMapping(model, idMap =>
 			{
 				var firstKey = idMap.Keys.First();
-				firstKey.ShouldBeOfType(typeof(KeyPropertyMapping));
+				firstKey.ShouldBeOfExactType(typeof(KeyPropertyMapping));
 				var firstKeyProp = (KeyPropertyMapping)firstKey;
 				firstKeyProp.Type.GetUnderlyingSystemType().ShouldEqual(typeof(SomeEnum));
 			});
@@ -92,7 +92,7 @@ namespace FluentNHibernate.Testing.AutoMapping.Overrides
 								.Id
 								;
 
-			idMapping.ShouldBeOfType(typeof(CompositeIdMapping));
+			idMapping.ShouldBeOfExactType(typeof(CompositeIdMapping));
 			verifier((CompositeIdMapping)idMapping);
 		}
     }

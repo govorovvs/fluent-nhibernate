@@ -289,16 +289,16 @@ namespace FluentNHibernate.Testing.DomainModel.Mapping
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
         public void SpecifyingIndexBaseOffsetAndTypeForListThrowsNotSupportedException()
         {
-            new MappingTester<OneToManyTarget>()
-                .ForMapping(map => map.HasMany(x => x.ListOfChildren)
-                    .AsList(index =>
-                    {
-                        index.Offset(1);
-                        index.Type("ListIndex");
-                    }));
+            Assert.Throws<NotSupportedException>(() =>
+                new MappingTester<OneToManyTarget>()
+                    .ForMapping(map => map.HasMany(x => x.ListOfChildren)
+                        .AsList(index =>
+                        {
+                            index.Offset(1);
+                            index.Type("ListIndex");
+                        })));
         }
 
         [Test]
