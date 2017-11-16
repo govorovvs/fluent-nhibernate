@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FluentNHibernate.Configuration\FluentNHibernate.Configuration.csproj" />
+    <ProjectReference Include="..\FluentNHibernate.Diagnostics\FluentNHibernate.Diagnostics.csproj" />
     <ProjectReference Include="..\FluentNHibernate.Specs.ExternalFixtures\FluentNHibernate.Specs.ExternalFixtures.csproj" />
     <ProjectReference Include="..\FluentNHibernate\FluentNHibernate.csproj" />
   </ItemGroup>

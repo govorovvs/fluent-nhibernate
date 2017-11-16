@@ -1,19 +1,21 @@
-﻿using System;
-
-namespace FluentNHibernate.Diagnostics
+﻿namespace FluentNHibernate.Diagnostics
 {
     /// <summary>
     /// Diagnostic logging configuration
     /// </summary>
     public class DiagnosticsConfiguration
     {
-        readonly IDiagnosticMessageDispatcher dispatcher;
-        readonly Action<IDiagnosticLogger> setLogger;
+        internal IDiagnosticMessageDispatcher Dispatcher { get; set; } = new DefaultDiagnosticMessageDispatcher();
 
-        public DiagnosticsConfiguration(IDiagnosticMessageDispatcher dispatcher, Action<IDiagnosticLogger> setLogger)
+        internal IDiagnosticLogger Logger { get; set; } = new NullDiagnosticsLogger();
+
+        public DiagnosticsConfiguration()
         {
-            this.dispatcher = dispatcher;
-            this.setLogger = setLogger;
+        }
+
+        public DiagnosticsConfiguration(IDiagnosticMessageDispatcher dispatcher)
+        {
+            Dispatcher = dispatcher;
         }
 
         /// <summary>
@@ -35,7 +37,7 @@ namespace FluentNHibernate.Diagnostics
         /// </summary>
         public DiagnosticsConfiguration Enable()
         {
-            setLogger(new DefaultDiagnosticLogger(dispatcher));
+            Logger = new DefaultDiagnosticLogger(Dispatcher);
             return this;
         }
 
@@ -44,7 +46,7 @@ namespace FluentNHibernate.Diagnostics
         /// </summary>
         public DiagnosticsConfiguration Disable()
         {
-            setLogger(new NullDiagnosticsLogger());
+            Logger = new NullDiagnosticsLogger();
             return this;
         }
 
@@ -54,7 +56,7 @@ namespace FluentNHibernate.Diagnostics
         /// <param name="listener">Listener</param>
         public DiagnosticsConfiguration RegisterListener(IDiagnosticListener listener)
         {
-            dispatcher.RegisterListener(listener);
+            Dispatcher.RegisterListener(listener);
             return this;
         }
 

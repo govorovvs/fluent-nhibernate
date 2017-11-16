@@ -25,13 +25,11 @@ namespace FluentNHibernate.Cfg
 
         readonly Configuration cfg;
         readonly IList<Action<Configuration>> configAlterations = new List<Action<Configuration>>();
-        readonly IDiagnosticMessageDispatcher dispatcher = new DefaultDiagnosticMessageDispatcher();
         readonly List<Action<MappingConfiguration>> mappingsBuilders = new List<Action<MappingConfiguration>>();
 
         bool dbSet;
         bool mappingsSet;
         
-        IDiagnosticLogger logger = new NullDiagnosticsLogger();
         readonly CacheSettingsBuilder cache = new CacheSettingsBuilder();
 
         internal FluentConfiguration()
@@ -52,18 +50,7 @@ namespace FluentNHibernate.Cfg
             get { return cfg; }
         }
 
-        /// <summary>
-        /// Configure diagnostic logging
-        /// </summary>
-        /// <param name="diagnosticsSetup">Diagnostic configuration</param>
-        public FluentConfiguration Diagnostics(Action<DiagnosticsConfiguration> diagnosticsSetup)
-        {
-            var diagnosticsCfg = new DiagnosticsConfiguration(dispatcher, new_logger => logger = new_logger);
-
-            diagnosticsSetup(diagnosticsCfg);
-
-            return this;
-        }
+        public IDiagnosticLogger Logger { get; set; } = new NullDiagnosticsLogger();
 
         /// <summary>
         /// Apply database settings
@@ -244,7 +231,7 @@ namespace FluentNHibernate.Cfg
         {
             try
             {
-                var mappingCfg = new MappingConfiguration(logger);
+                var mappingCfg = new MappingConfiguration(Logger);
 
 			    foreach (var builder in mappingsBuilders)
 			        builder(mappingCfg);

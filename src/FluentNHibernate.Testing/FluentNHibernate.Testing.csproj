@@ -28,6 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FluentNHibernate.Configuration\FluentNHibernate.Configuration.csproj" />
+    <ProjectReference Include="..\FluentNHibernate.Diagnostics\FluentNHibernate.Diagnostics.csproj" />
     <ProjectReference Include="..\FluentNHibernate\FluentNHibernate.csproj" />
   </ItemGroup>
 
