@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using FluentNHibernate.MappingModel;
 using FluentNHibernate.MappingModel.ClassBased;
 
@@ -43,8 +42,7 @@ namespace FluentNHibernate.Conventions.Inspections
             get
             {
                 return mapping.Anys
-                    .Select(x => new AnyInspector(x))
-                    .Cast<IAnyInspector>();
+                    .Select(x => new AnyInspector(x));
             }
         }
 
@@ -69,8 +67,7 @@ namespace FluentNHibernate.Conventions.Inspections
             get
             {
                 return mapping.Collections
-                    .Select(x => new CollectionInspector(x))
-                    .Cast<ICollectionInspector>();
+                    .Select(x => new CollectionInspector(x));
             }
         }
 
@@ -94,14 +91,18 @@ namespace FluentNHibernate.Conventions.Inspections
             get
             {
                 return mapping.Joins
-                    .Select(x => new JoinInspector(x))
-                    .Cast<IJoinInspector>();
+                    .Select(x => new JoinInspector(x));
             }
         }
 
         public bool LazyLoad
         {
             get { return mapping.Lazy; }
+        }
+
+        public string Schema
+        {
+            get { return mapping.Schema; }
         }
 
         public string Name
@@ -114,8 +115,7 @@ namespace FluentNHibernate.Conventions.Inspections
             get
             {
                 return mapping.OneToOnes
-                    .Select(x => new OneToOneInspector(x))
-                    .Cast<IOneToOneInspector>();
+                    .Select(x => new OneToOneInspector(x));
             }
         }
 
@@ -124,8 +124,7 @@ namespace FluentNHibernate.Conventions.Inspections
             get
             {
                 return mapping.Properties
-                    .Select(x => new PropertyInspector(x))
-                    .Cast<IPropertyInspector>();
+                    .Select(x => new PropertyInspector(x));
             }
         }
 
@@ -139,8 +138,7 @@ namespace FluentNHibernate.Conventions.Inspections
             get
             {
                 return mapping.References
-                    .Select(x => new ManyToOneInspector(x))
-                    .Cast<IManyToOneInspector>();
+                    .Select(x => new ManyToOneInspector(x));
             }
         }
         public bool SelectBeforeUpdate
@@ -153,14 +151,13 @@ namespace FluentNHibernate.Conventions.Inspections
             get
             {
                 return mapping.Subclasses
-                    .Select(x => new JoinedSubclassInspector(x))
-                    .Cast<IJoinedSubclassInspector>();
+                    .Select(x => new JoinedSubclassInspector(x));
             }
         }
 
         IEnumerable<ISubclassInspectorBase> ISubclassInspectorBase.Subclasses
         {
-            get { return Subclasses.Cast<ISubclassInspectorBase>(); }
+            get { return Subclasses; }
         }
 
         public string TableName
